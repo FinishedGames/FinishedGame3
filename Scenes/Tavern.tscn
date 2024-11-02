@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwdxeknq3ln8"]
+
+[ext_resource type="Material" uid="uid://btdnpqadnchbl" path="res://Resources/Materials/wood_mat.tres" id="1_vlobw"]
+[ext_resource type="Material" uid="uid://ck73ghsdefen2" path="res://Resources/Materials/stone_mat.tres" id="2_snqm7"]
+[ext_resource type="Texture2D" uid="uid://bl3gl3r07itkn" path="res://Resources/Textures/test_1.PNG" id="3_5bxti"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7l8aw"]
+size = Vector2(10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kel23"]
+size = Vector2(10, 3)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_msg50"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wafm2"]
+sky_material = SubResource("ProceduralSkyMaterial_msg50")
+
+[sub_resource type="Environment" id="Environment_40n0m"]
+background_mode = 2
+sky = SubResource("Sky_wafm2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_755me"]
+albedo_texture = ExtResource("3_5bxti")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yjboh"]
+size = Vector2(10, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t7kv0"]
+size = Vector2(10, 0.2)
+
+[node name="Tavern" type="Node3D"]
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Background"]
+material_override = ExtResource("1_vlobw")
+mesh = SubResource("PlaneMesh_7l8aw")
+skeleton = NodePath("../..")
+
+[node name="Wall1" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 5, 1, 0)
+material_override = ExtResource("2_snqm7")
+mesh = SubResource("PlaneMesh_kel23")
+
+[node name="Wall2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5, 1, 0)
+material_override = ExtResource("2_snqm7")
+mesh = SubResource("PlaneMesh_kel23")
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 1, -5)
+material_override = ExtResource("2_snqm7")
+mesh = SubResource("PlaneMesh_kel23")
+skeleton = NodePath("../Wall2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_40n0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.986242, 0.165085, -0.00855751, -0.0938995, 0.602071, 0.792902, 0.136048, -0.78119, 0.609289, 0, 10, 10)
+shadow_enabled = true
+
+[node name="Table" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 3)
+material_override = SubResource("StandardMaterial3D_755me")
+mesh = SubResource("PlaneMesh_yjboh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 2)
+material_override = SubResource("StandardMaterial3D_755me")
+mesh = SubResource("PlaneMesh_t7kv0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1.9)
+material_override = SubResource("StandardMaterial3D_755me")
+mesh = SubResource("PlaneMesh_t7kv0")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 4)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 50.0
