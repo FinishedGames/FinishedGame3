@@ -1,14 +1,18 @@
-[gd_scene load_steps=35 format=3 uid="uid://bwdxeknq3ln8"]
+[gd_scene load_steps=39 format=3 uid="uid://bwdxeknq3ln8"]
 
 [ext_resource type="Material" uid="uid://btdnpqadnchbl" path="res://Resources/Materials/wood_mat.tres" id="1_vlobw"]
 [ext_resource type="Material" uid="uid://ck73ghsdefen2" path="res://Resources/Materials/stone_mat.tres" id="2_snqm7"]
 [ext_resource type="Material" uid="uid://cuteg3ajfpcrl" path="res://Resources/Materials/table_mat.tres" id="3_pumyl"]
 [ext_resource type="Material" uid="uid://bgpg6vl4ksb8g" path="res://Resources/Materials/dark_wood_mat.tres" id="4_nt4sx"]
 [ext_resource type="Material" uid="uid://ch4kaal46h6e0" path="res://Resources/Materials/table_mat_1.tres" id="5_evvb8"]
-[ext_resource type="Texture2D" uid="uid://bq33y8qn4aco3" path="res://Resources/Textures/temp_door.png" id="5_kt7t3"]
 [ext_resource type="PackedScene" uid="uid://do637wmdlwagv" path="res://Scenes/Player.tscn" id="6_w34x8"]
-[ext_resource type="Texture2D" uid="uid://dsv0jc1tpewi" path="res://Resources/Textures/lamp.PNG" id="7_amwxd"]
+[ext_resource type="Texture2D" uid="uid://dsv0jc1tpewi" path="res://Resources/Sprites/lamp.PNG" id="7_n2ed1"]
 [ext_resource type="Texture2D" uid="uid://bc3v6ufl4eb60" path="res://Resources/Textures/table_1.PNG" id="7_rxge8"]
+[ext_resource type="Script" path="res://Scripts/client_spawner.gd" id="9_or1cr"]
+[ext_resource type="Texture2D" uid="uid://vahfhepxtrjp" path="res://Resources/Sprites/door_frame.PNG" id="9_tm7rx"]
+[ext_resource type="Texture2D" uid="uid://bq33y8qn4aco3" path="res://Resources/Sprites/temp_door.png" id="10_8oiw0"]
+[ext_resource type="PackedScene" uid="uid://lxnna48lk32m" path="res://Scenes/Client.tscn" id="12_5n1qv"]
+[ext_resource type="Texture2D" uid="uid://dyi0fnvm61wor" path="res://Resources/Sprites/outside.PNG" id="12_r5asi"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7l8aw"]
 size = Vector2(10, 10)
@@ -48,20 +52,6 @@ top_radius = 0.025
 bottom_radius = 0.025
 height = 0.4
 radial_segments = 8
-
-[sub_resource type="BoxMesh" id="BoxMesh_8w6x8"]
-size = Vector3(0.1, 2, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wc7oi"]
-size = Vector3(0.1, 1.5, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bhty"]
-albedo_texture = ExtResource("5_kt7t3")
-emission_enabled = true
-emission = Color(0.667969, 0.867706, 1, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0flxf"]
-size = Vector2(1.4, 2)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_msg50"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -106,6 +96,34 @@ top_radius = 0.005
 bottom_radius = 0.005
 height = 0.35
 
+[sub_resource type="Curve3D" id="Curve3D_5ellv"]
+_data = {
+"points": PackedVector3Array(0.00368094, 0, -6.21576, 0, 0, 6, 3.25, 0, -4.99, 0, 0, -1.5, 0.00829077, -0.0102832, 1.09686, -3.75, 0, 1.5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_qo768"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 6, 3.25, 0, -4.99, 0, 0, -1.5, 0, 0, 0, -1.25, 0, 1.5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_43oxt"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 6, 3.25, 0, -4.99, 0, 0, -1.5, 0, 0, 0, 1.25, 0, 1.5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_6esnt"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 6, 3.25, 0, -4.99, 0, 0, -1.5, 0, 0, 0, 3.75, 0, 1.5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="Tavern" type="Node3D"]
 
 [node name="Background" type="Node3D" parent="."]
@@ -128,6 +146,7 @@ skeleton = NodePath("../..")
 
 [node name="Wall3" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(1, 0, 4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 1.5, -5)
+sorting_offset = -1.0
 material_override = ExtResource("2_snqm7")
 mesh = SubResource("PlaneMesh_kel23")
 skeleton = NodePath("../Wall2")
@@ -383,29 +402,6 @@ transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, -0.0871557
 material_override = ExtResource("3_pumyl")
 mesh = SubResource("CylinderMesh_524p2")
 
-[node name="Door" type="Node3D" parent="Background"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1, 0)
-material_override = ExtResource("4_nt4sx")
-mesh = SubResource("BoxMesh_8w6x8")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 1, 0)
-material_override = ExtResource("4_nt4sx")
-mesh = SubResource("BoxMesh_8w6x8")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background/Door"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2.05, 0)
-material_override = ExtResource("4_nt4sx")
-mesh = SubResource("BoxMesh_wc7oi")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Background/Door"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0.0304965)
-material_override = SubResource("StandardMaterial3D_6bhty")
-mesh = SubResource("PlaneMesh_0flxf")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_40n0m")
 
@@ -483,7 +479,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 1.8, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Lights/Lamp"]
 pixel_size = 0.0005
-texture = ExtResource("7_amwxd")
+texture = ExtResource("7_n2ed1")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights/Lamp"]
 light_color = Color(0.777344, 0.658351, 0.376526, 1)
@@ -499,7 +495,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 1.8, -2.5)
 
 [node name="Sprite3D" type="Sprite3D" parent="Lights/Lamp2"]
 pixel_size = 0.0005
-texture = ExtResource("7_amwxd")
+texture = ExtResource("7_n2ed1")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights/Lamp2"]
 light_color = Color(0.777344, 0.658351, 0.376526, 1)
@@ -511,7 +507,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, 1.8, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Lights/Lamp3"]
 pixel_size = 0.0005
-texture = ExtResource("7_amwxd")
+texture = ExtResource("7_n2ed1")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights/Lamp3"]
 light_color = Color(0.777344, 0.658351, 0.376526, 1)
@@ -523,7 +519,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, 1.8, -2.5)
 
 [node name="Sprite3D" type="Sprite3D" parent="Lights/Lamp4"]
 pixel_size = 0.0005
-texture = ExtResource("7_amwxd")
+texture = ExtResource("7_n2ed1")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights/Lamp4"]
 light_color = Color(0.777344, 0.658351, 0.376526, 1)
@@ -538,15 +534,80 @@ POS_3 = NodePath("../Three")
 POS_4 = NodePath("../Four")
 
 [node name="One" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.79651, 1.67564, 3.66547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 1.676, 3.665)
 
 [node name="Two" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20718, 1.67564, 3.66547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 1.676, 3.665)
 
 [node name="Three" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50461, 1.67564, 3.66547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 1.676, 3.665)
 
 [node name="Four" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91897, 1.67564, 3.66547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 1.676, 3.665)
+
+[node name="ClientSpawner" type="Node3D" parent="."]
+script = ExtResource("9_or1cr")
+
+[node name="Door" type="Node3D" parent="ClientSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -4.99)
+
+[node name="Sprite3D" type="Sprite3D" parent="ClientSpawner/Door"]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 1.075, 0)
+sorting_offset = 0.3
+texture = ExtResource("9_tm7rx")
+
+[node name="Sprite3D2" type="Sprite3D" parent="ClientSpawner/Door"]
+transform = Transform3D(-4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, 0.008, 0.97, 0.01)
+visible = false
+sorting_offset = 4.0
+texture = ExtResource("10_8oiw0")
+
+[node name="Sprite3D3" type="Sprite3D" parent="ClientSpawner/Door"]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0.008, 1.075, 0)
+sorting_offset = 0.1
+texture = ExtResource("12_r5asi")
+
+[node name="client_first" type="Marker3D" parent="ClientSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, 1.5)
+
+[node name="Path3D" type="Path3D" parent="ClientSpawner/client_first"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -1.5)
+curve = SubResource("Curve3D_5ellv")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="ClientSpawner/client_first/Path3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0, -4.99)
+
+[node name="client_second" type="Marker3D" parent="ClientSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 1.5)
+
+[node name="Path3D2" type="Path3D" parent="ClientSpawner/client_second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -1.5)
+curve = SubResource("Curve3D_qo768")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="ClientSpawner/client_second/Path3D2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0, -4.99)
+
+[node name="client_third" type="Marker3D" parent="ClientSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 1.5)
+
+[node name="Path3D3" type="Path3D" parent="ClientSpawner/client_third"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -1.5)
+curve = SubResource("Curve3D_43oxt")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="ClientSpawner/client_third/Path3D3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0, -4.99)
+
+[node name="client_forth" type="Marker3D" parent="ClientSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 1.5)
+
+[node name="Path3D4" type="Path3D" parent="ClientSpawner/client_forth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -1.5)
+curve = SubResource("Curve3D_6esnt")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="ClientSpawner/client_forth/Path3D4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0, -4.99)
+
+[node name="Client" parent="ClientSpawner" instance=ExtResource("12_5n1qv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 1.3, -4.99)
 
 [editable path="Player"]

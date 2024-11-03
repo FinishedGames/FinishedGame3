@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq33y8qn4aco3"
-path.s3tc="res://.godot/imported/temp_door.png-67a12701995bcb18d77b7e9f362e2801.s3tc.ctex"
+uid="uid://vahfhepxtrjp"
+path.s3tc="res://.godot/imported/door_frame.PNG-dedbbb83f3a42ed66806acea372ff6dd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Textures/temp_door.png"
-dest_files=["res://.godot/imported/temp_door.png-67a12701995bcb18d77b7e9f362e2801.s3tc.ctex"]
+source_file="res://Resources/Sprites/door_frame.PNG"
+dest_files=["res://.godot/imported/door_frame.PNG-dedbbb83f3a42ed66806acea372ff6dd.s3tc.ctex"]
 
 [params]
 

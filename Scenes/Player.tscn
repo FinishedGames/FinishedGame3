@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://do637wmdlwagv"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_tguqv"]
-[ext_resource type="Texture2D" uid="uid://c1yv5r8cilq5m" path="res://Resources/Textures/hand.PNG" id="2_pohte"]
+[ext_resource type="Texture2D" uid="uid://c1yv5r8cilq5m" path="res://Resources/Sprites/hand.PNG" id="2_y1ent"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_tguqv")
@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.286, -0.68)
 transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
 flip_v = true
 pixel_size = 0.0003
-texture = ExtResource("2_pohte")
+texture = ExtResource("2_y1ent")
 
 [node name="RightHand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
@@ -34,4 +34,4 @@ transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819,
 flip_h = true
 flip_v = true
 pixel_size = 0.0003
-texture = ExtResource("2_pohte")
+texture = ExtResource("2_y1ent")

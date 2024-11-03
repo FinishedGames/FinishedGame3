@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1yv5r8cilq5m"
-path.s3tc="res://.godot/imported/hand.PNG-3433cb2e57ed6e21787c925df092772f.s3tc.ctex"
+uid="uid://dsv0jc1tpewi"
+path.s3tc="res://.godot/imported/lamp.PNG-ee8d2c5295174982e105fbac0c2fbc01.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Textures/hand.PNG"
-dest_files=["res://.godot/imported/hand.PNG-3433cb2e57ed6e21787c925df092772f.s3tc.ctex"]
+source_file="res://Resources/Sprites/lamp.PNG"
+dest_files=["res://.godot/imported/lamp.PNG-ee8d2c5295174982e105fbac0c2fbc01.s3tc.ctex"]
 
 [params]
 
