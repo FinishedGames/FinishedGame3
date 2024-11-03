@@ -3,7 +3,10 @@ extends Node3D
 
 @onready var horizontal_timer = $HorizontalTimer
 @onready var vertical_timer = $VerticalTimer
+@onready var left_hand = $LeftHand
+@onready var right_hand = $RightHand
 
+@export var current_pos: int = 2
 
 @export_group("Positions")
 @export var POS_1: Marker3D = null
@@ -17,6 +20,7 @@ extends Node3D
 	4: POS_4
 }
 
+
 @export_group("Settings")
 ## How many units player moves when looks down.
 @export var Y_DELTA: float = 1.0
@@ -24,6 +28,10 @@ extends Node3D
 @export var HORIZONTAL_SPEED: float = 10.0
 ## How fast player moves up/down
 @export var VERTICAL_SPEED: float = 10.0
+## How many units player moves their hands when moving up/down
+@export var Z_HAND_DELTA: float = 0.3
+## How fast player moves their hands when moving up/down.
+@export var Z_HAND_SPEED: float = 10.0
 
 
 var is_currently_up: bool = true
@@ -33,35 +41,105 @@ var vertical_move_locked: bool = false
 
 
 func _ready():
-	self.position = POS_2.position
+	self.position = PosDict[current_pos].position
 
 
 func move_to(number: int):
+	
+	if number == current_pos:
+		return
+	
 	var new_position = PosDict[number].position.x
-	var tween = create_tween()
+	var halfway = self.position.x + (PosDict[number].position.x - self.position.x) / 2
+	
+	var left_hand_pos = left_hand.position.z
+	var left_hand_temp_pos = left_hand.position.z + Z_HAND_DELTA
+	
+	var right_hand_pos = right_hand.position.z
+	var right_hand_temp_pos = right_hand.position.z + Z_HAND_DELTA
+	
+	var first_tween = create_tween()
+	
 	horizontal_move_locked = true
 	vertical_move_locked = true
-	tween.tween_property(self, "position:x", new_position, 1 / HORIZONTAL_SPEED)
-	await tween.finished
+	
+	first_tween.tween_property(self, "position:x", halfway, 1 / HORIZONTAL_SPEED)
+	if not is_currently_up:
+		var first_left_hand_tween = create_tween()
+		var first_right_hand_tween = create_tween()
+		first_left_hand_tween.tween_property(left_hand, "position:z", left_hand_temp_pos, 1 / Z_HAND_SPEED)
+		first_right_hand_tween.tween_property(right_hand, "position:z", right_hand_temp_pos, 1 / Z_HAND_SPEED)
+		await first_right_hand_tween.finished
+	else:
+		await first_tween.finished
+	
+	var second_tween = create_tween()
+	
+	
+	second_tween.tween_property(self, "position:x", new_position, 1 / VERTICAL_SPEED)
+	if not is_currently_up:
+		var second_left_hand_tween = create_tween()
+		var second_right_hand_tween = create_tween()
+		second_left_hand_tween.tween_property(left_hand, "position:z", left_hand_pos, 1 / Z_HAND_SPEED)
+		second_right_hand_tween.tween_property(right_hand, "position:z", right_hand_pos, 1 / Z_HAND_SPEED)
+		await second_right_hand_tween.finished
+	else:
+		await second_tween.finished
+	
 	horizontal_timer.start()
 	await horizontal_timer.timeout
 	horizontal_move_locked = false
 	vertical_move_locked = false
+	
+	current_pos = number
 
 
 func switch_vertical():
 	var new_position: float
+	var halfway: float
 	if is_currently_up:
 		new_position = self.position.y - Y_DELTA
+		halfway = self.position.y - Y_DELTA / 2
 	else:
 		new_position = self.position.y + Y_DELTA
-	var tween = create_tween()
+		halfway = self.position.y + Y_DELTA / 2
+	var first_tween = create_tween()
+	var first_left_hand_tween = create_tween()
+	var first_right_hand_tween = create_tween()
+	
+	var left_hand_pos = left_hand.position.z
+	var left_hand_temp_pos = left_hand.position.z + Z_HAND_DELTA
+	
+	var right_hand_pos = right_hand.position.z
+	var right_hand_temp_pos = right_hand.position.z + Z_HAND_DELTA
+	
 	horizontal_move_locked = true
 	vertical_move_locked = true
-	tween.tween_property(self, "position:y", new_position, 1 / VERTICAL_SPEED)
-	await tween.finished
-	vertical_timer.start()
+	
+	first_tween.tween_property(self, "position:y", halfway, 1 / VERTICAL_SPEED)
+	first_left_hand_tween.tween_property(left_hand, "position:z", left_hand_temp_pos, 1 / Z_HAND_SPEED)
+	first_right_hand_tween.tween_property(right_hand, "position:z", right_hand_temp_pos, 1 / Z_HAND_SPEED)
+	
+	if VERTICAL_SPEED > Z_HAND_SPEED:
+		await first_right_hand_tween.finished
+	else:
+		await first_tween.finished
+	
+	var second_tween = create_tween()
+	var second_left_hand_tween = create_tween()
+	var second_right_hand_tween = create_tween()
+	
+	second_tween.tween_property(self, "position:y", new_position, 1 / VERTICAL_SPEED)
+	second_left_hand_tween.tween_property(left_hand, "position:z", left_hand_pos, 1 / Z_HAND_SPEED)
+	second_right_hand_tween.tween_property(right_hand, "position:z", right_hand_pos, 1 / Z_HAND_SPEED)
+	
+	if VERTICAL_SPEED > Z_HAND_SPEED:
+		await second_right_hand_tween.finished
+	else:
+		await second_tween.finished
+	
 	is_currently_up = !is_currently_up
+	vertical_timer.start()
 	await vertical_timer.timeout
 	horizontal_move_locked = false
 	vertical_move_locked = false
