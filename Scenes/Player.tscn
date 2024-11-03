@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://do637wmdlwagv"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_tguqv"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_tguqv")
+Y_DELTA = 0.7
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.964095, 0.265556, 0, -0.265556, 0.964095, 0, 0, 0)
+
+[node name="HorizontalTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="VerticalTimer" type="Timer" parent="."]
+wait_time = 0.3
