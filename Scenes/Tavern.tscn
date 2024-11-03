@@ -1,14 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwdxeknq3ln8"]
+[gd_scene load_steps=20 format=3 uid="uid://bwdxeknq3ln8"]
 
 [ext_resource type="Material" uid="uid://btdnpqadnchbl" path="res://Resources/Materials/wood_mat.tres" id="1_vlobw"]
 [ext_resource type="Material" uid="uid://ck73ghsdefen2" path="res://Resources/Materials/stone_mat.tres" id="2_snqm7"]
-[ext_resource type="Texture2D" uid="uid://bl3gl3r07itkn" path="res://Resources/Textures/test_1.PNG" id="3_5bxti"]
+[ext_resource type="Material" uid="uid://cuteg3ajfpcrl" path="res://Resources/Materials/table_mat.tres" id="3_pumyl"]
+[ext_resource type="Material" uid="uid://bgpg6vl4ksb8g" path="res://Resources/Materials/dark_wood_mat.tres" id="4_nt4sx"]
+[ext_resource type="Material" uid="uid://ch4kaal46h6e0" path="res://Resources/Materials/table_mat_1.tres" id="5_evvb8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7l8aw"]
 size = Vector2(10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kel23"]
 size = Vector2(10, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2djfh"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nootw"]
+size = Vector3(0.5, 10, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lkbkx"]
+size = Vector3(0.5, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_coms0"]
+size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_85fq7"]
+size = Vector3(0.3, 10, 0.3)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_msg50"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,15 +40,17 @@ sky = SubResource("Sky_wafm2")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_755me"]
-albedo_texture = ExtResource("3_5bxti")
-uv1_triplanar = true
+[sub_resource type="BoxMesh" id="BoxMesh_e1kwv"]
+size = Vector3(10, 0.1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_yjboh"]
-size = Vector2(10, 2)
+[sub_resource type="BoxMesh" id="BoxMesh_3fuba"]
+size = Vector3(10, 1.2, 0.1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_t7kv0"]
-size = Vector2(10, 0.2)
+[sub_resource type="BoxMesh" id="BoxMesh_c3462"]
+size = Vector3(0.1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1i66b"]
+size = Vector3(10, 0.4, 1)
 
 [node name="Tavern" type="Node3D"]
 
@@ -43,48 +62,178 @@ mesh = SubResource("PlaneMesh_7l8aw")
 skeleton = NodePath("../..")
 
 [node name="Wall1" type="MeshInstance3D" parent="Background"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 5, 1, 0)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 5, 1.5, 0)
 material_override = ExtResource("2_snqm7")
 mesh = SubResource("PlaneMesh_kel23")
 
 [node name="Wall2" type="MeshInstance3D" parent="Background"]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5, 1, 0)
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5, 1.5, 0)
 material_override = ExtResource("2_snqm7")
 mesh = SubResource("PlaneMesh_kel23")
 skeleton = NodePath("../..")
 
 [node name="Wall3" type="MeshInstance3D" parent="Background"]
-transform = Transform3D(1, 0, 4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 1, -5)
+transform = Transform3D(1, 0, 4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 1.5, -5)
 material_override = ExtResource("2_snqm7")
 mesh = SubResource("PlaneMesh_kel23")
 skeleton = NodePath("../Wall2")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 3, 0)
+material_override = ExtResource("3_pumyl")
+mesh = SubResource("PlaneMesh_2djfh")
+
+[node name="Beam" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.5, 3, 0)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_nootw")
+
+[node name="Beam2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.5, 3, 0)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_nootw")
+
+[node name="Beam3" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_lkbkx")
+
+[node name="Beam4" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_lkbkx")
+
+[node name="Beam5" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 3, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_nootw")
+
+[node name="Beam6" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 3, 0)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_nootw")
+
+[node name="Beam7" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5, 3, 0)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_nootw")
+
+[node name="Beam8" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 3, 2.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_coms0")
+
+[node name="Beam9" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 2, 2.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_coms0")
+
+[node name="Beam10" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -2, 2.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_coms0")
+
+[node name="Beam11" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -3, 2.5, -5)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_coms0")
+
+[node name="Beam12" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 3, -2)
+material_override = ExtResource("4_nt4sx")
+mesh = SubResource("BoxMesh_85fq7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_40n0m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.986242, 0.165085, -0.00855751, -0.0938995, 0.602071, 0.792902, 0.136048, -0.78119, 0.609289, 0, 10, 10)
-shadow_enabled = true
+light_color = Color(0.739288, 0.833584, 0.996094, 1)
+light_energy = 0.5
 
 [node name="Table" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 3)
-material_override = SubResource("StandardMaterial3D_755me")
-mesh = SubResource("PlaneMesh_yjboh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_e1kwv")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 2)
-material_override = SubResource("StandardMaterial3D_755me")
-mesh = SubResource("PlaneMesh_t7kv0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2.05)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_3fuba")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1.9)
-material_override = SubResource("StandardMaterial3D_755me")
-mesh = SubResource("PlaneMesh_t7kv0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 0.5, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_c3462")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 0.5, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_c3462")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_1i66b")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_c3462")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_c3462")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 2.5)
+material_override = ExtResource("5_evvb8")
+mesh = SubResource("BoxMesh_c3462")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 4)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.964128, 0.265438, 0, -0.265438, 0.964128, 0, 0, 0)
 fov = 50.0
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.8, 0)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.8, -2.5)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.8, 0)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.8, -2.5)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.8, 4.5)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.8, 4.5)
+light_color = Color(0.777344, 0.658351, 0.376526, 1)
+light_energy = 3.5
+shadow_enabled = true

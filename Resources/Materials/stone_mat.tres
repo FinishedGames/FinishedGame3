@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://br1v1m2hxe6t2" path="res://Resources/Textures/stone.PNG" id="1_r108c"]
 
 [resource]
+specular_mode = 1
 albedo_texture = ExtResource("1_r108c")
 uv1_scale = Vector3(2, 2, 2)
 uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bgpg6vl4ksb8g"]
+
+[ext_resource type="Texture2D" uid="uid://cg8lc3gkgncrw" path="res://Resources/Textures/dark_wood.jpg" id="1_p0icy"]
+
+[resource]
+specular_mode = 1
+albedo_texture = ExtResource("1_p0icy")
+uv1_triplanar = true
