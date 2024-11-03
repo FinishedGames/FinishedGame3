@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://do637wmdlwagv"]
+[gd_scene load_steps=3 format=3 uid="uid://do637wmdlwagv"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_tguqv"]
-[ext_resource type="Texture2D" uid="uid://bc3v6ufl4eb60" path="res://Resources/Textures/table_1.PNG" id="2_puuo1"]
-[ext_resource type="Texture2D" uid="uid://br1v1m2hxe6t2" path="res://Resources/Textures/stone.PNG" id="3_wymny"]
+[ext_resource type="Texture2D" uid="uid://c1yv5r8cilq5m" path="res://Resources/Textures/hand.PNG" id="2_pohte"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_tguqv")
 Y_DELTA = 0.7
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.964095, 0.265556, 0, -0.265556, 0.964095, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939692, 0.34202, 0, -0.34202, 0.939692, 0, 0, 0)
+fov = 60.0
 
 [node name="HorizontalTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -18,15 +18,20 @@ wait_time = 0.1
 wait_time = 0.3
 
 [node name="LeftHand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.489348, -0.285983, -0.680003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.286, -0.68)
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftHand"]
-transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0, 0, 0)
-texture = ExtResource("2_puuo1")
+transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+flip_v = true
+pixel_size = 0.0003
+texture = ExtResource("2_pohte")
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451217, -0.305048, -0.686359)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
 
 [node name="Sprite3D" type="Sprite3D" parent="RightHand"]
-transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0, 0, 0)
-texture = ExtResource("3_wymny")
+transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+flip_h = true
+flip_v = true
+pixel_size = 0.0003
+texture = ExtResource("2_pohte")
