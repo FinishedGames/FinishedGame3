@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://do637wmdlwagv"]
+[gd_scene load_steps=5 format=3 uid="uid://do637wmdlwagv"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_tguqv"]
+[ext_resource type="Script" path="res://Scripts/left_hand.gd" id="2_obhq6"]
 [ext_resource type="Texture2D" uid="uid://c1yv5r8cilq5m" path="res://Resources/Sprites/hand.PNG" id="2_y1ent"]
+[ext_resource type="Script" path="res://Scripts/right_hand.gd" id="4_548bs"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_tguqv")
@@ -19,19 +21,26 @@ wait_time = 0.3
 
 [node name="LeftHand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.286, -0.68)
+script = ExtResource("2_obhq6")
+SPEED = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftHand"]
-transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0.4)
 flip_v = true
 pixel_size = 0.0003
 texture = ExtResource("2_y1ent")
+region_enabled = true
+region_rect = Rect2(211, 51, 935, 1997)
 
 [node name="RightHand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
+script = ExtResource("4_548bs")
 
 [node name="Sprite3D" type="Sprite3D" parent="RightHand"]
-transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0.4)
 flip_h = true
 flip_v = true
 pixel_size = 0.0003
 texture = ExtResource("2_y1ent")
+region_enabled = true
+region_rect = Rect2(211, 51, 935, 1997)

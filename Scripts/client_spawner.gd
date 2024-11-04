@@ -6,8 +6,7 @@ extends Node3D
 @export var POS_3: Marker3D = null
 @export var POS_4: Marker3D = null
 
-@onready var client = preload("res://Scripts/client.gd")
-
+@onready var client = preload("res://Scenes/Client.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

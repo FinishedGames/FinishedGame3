@@ -151,5 +151,5 @@ func _unhandled_input(event):
 			move_to(n)
 	if event.is_action_pressed("Shift"):
 		switch_vertical()
-	if event.is_action_pressed("Esc"):
-		get_tree().quit()
+#	if event.is_action_pressed("Esc"):
+#		get_tree().quit()

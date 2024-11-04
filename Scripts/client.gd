@@ -8,7 +8,7 @@ extends Node3D
 func _select_character():
 	var head_num = randi() % 5
 	var body_num = randi() % 2
-	var hair_num = randi() % 5
+	var hair_num = randi() % 6
 	
 	var head_tex_path = "res://Resources/Sprites/Characters/Heads/head_%d.PNG"
 	var body_tex_path = "res://Resources/Sprites/Characters/Bodies/body_%d.PNG"
