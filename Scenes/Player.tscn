@@ -21,17 +21,21 @@ wait_time = 0.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.286, -0.68)
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftHand"]
-transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+transform = Transform3D(1, 0.000568643, 0.000167136, 0.000576047, -0.866099, -0.499872, -0.000139496, 0.499872, -0.8661, -2.89083e-06, -0.168642, 0.120938)
 flip_v = true
 pixel_size = 0.0003
 texture = ExtResource("2_y1ent")
+region_enabled = true
+region_rect = Rect2(211, 51, 935, 1997)
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.470657, -0.965829)
 
 [node name="Sprite3D" type="Sprite3D" parent="RightHand"]
-transform = Transform3D(1, 0, 0, 0, -0.388229, -0.965926, 0, 1.44889, -0.258819, 0, 0, 0.4)
+transform = Transform3D(0.999991, -0.00425442, -0.000380676, -0.00387761, -0.866807, -0.498629, 0.00179141, 0.498626, -0.866816, 2.89083e-06, 0.00298512, 0.393233)
 flip_h = true
 flip_v = true
 pixel_size = 0.0003
 texture = ExtResource("2_y1ent")
+region_enabled = true
+region_rect = Rect2(211, 51, 935, 1997)
