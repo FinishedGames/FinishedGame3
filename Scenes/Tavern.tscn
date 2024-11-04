@@ -532,7 +532,7 @@ light_energy = 3.5
 shadow_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("POS_1", "POS_2", "POS_3", "POS_4") instance=ExtResource("6_w34x8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 3.643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 3.3)
 POS_1 = NodePath("../One")
 POS_2 = NodePath("../Two")
 POS_3 = NodePath("../Three")

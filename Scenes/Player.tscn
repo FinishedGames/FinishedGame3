@@ -20,12 +20,12 @@ wait_time = 0.1
 wait_time = 0.3
 
 [node name="LeftHand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.286, -0.68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.4, -0.5)
 script = ExtResource("2_obhq6")
 SPEED = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftHand"]
-transform = Transform3D(1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, -0.173648, -0.984808, 0, 0.984808, -0.173648, 0, 0, 0.15)
 flip_v = true
 pixel_size = 0.0003
 texture = ExtResource("2_y1ent")
@@ -33,11 +33,11 @@ region_enabled = true
 region_rect = Rect2(211, 51, 935, 1997)
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.4, -0.5)
 script = ExtResource("4_548bs")
 
 [node name="Sprite3D" type="Sprite3D" parent="RightHand"]
-transform = Transform3D(1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, -0.173648, -0.984808, 0, 0.984808, -0.173648, 0, 0, 0.15)
 flip_h = true
 flip_v = true
 pixel_size = 0.0003

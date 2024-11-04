@@ -29,7 +29,7 @@ extends Node3D
 ## How fast player moves up/down
 @export var VERTICAL_SPEED: float = 10.0
 ## How many units player moves their hands when moving up/down
-@export var Z_HAND_DELTA: float = 0.3
+@export var Z_HAND_TEMP_POS: float = -0.2
 ## How fast player moves their hands when moving up/down.
 @export var Z_HAND_SPEED: float = 10.0
 
@@ -53,10 +53,10 @@ func move_to(number: int):
 	var halfway = self.position.x + (PosDict[number].position.x - self.position.x) / 2
 	
 	var left_hand_pos = left_hand.position.z
-	var left_hand_temp_pos = left_hand.position.z + Z_HAND_DELTA
+	var left_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var right_hand_pos = right_hand.position.z
-	var right_hand_temp_pos = right_hand.position.z + Z_HAND_DELTA
+	var right_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var first_tween = create_tween()
 	
@@ -108,10 +108,10 @@ func switch_vertical():
 	var first_right_hand_tween = create_tween()
 	
 	var left_hand_pos = left_hand.position.z
-	var left_hand_temp_pos = left_hand.position.z + Z_HAND_DELTA
+	var left_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var right_hand_pos = right_hand.position.z
-	var right_hand_temp_pos = right_hand.position.z + Z_HAND_DELTA
+	var right_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	horizontal_move_locked = true
 	vertical_move_locked = true
