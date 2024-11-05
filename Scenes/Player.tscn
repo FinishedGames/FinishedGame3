@@ -45,7 +45,9 @@ shape = SubResource("BoxShape3D_opvk0")
 [node name="RightHand" type="Node3D" parent="." node_paths=PackedStringArray("PLAYER")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.305, -0.68)
 script = ExtResource("4_548bs")
-DECCELERATION = 5.0
+SPEED = 0.05
+ACCELERATION = 1.0
+DECCELERATION = 10.0
 SENSITIVITY = 0.001
 PLAYER = NodePath("..")
 

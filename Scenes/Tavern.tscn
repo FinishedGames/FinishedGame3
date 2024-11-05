@@ -125,6 +125,8 @@ point_count = 2
 
 [node name="Tavern" type="Node3D"]
 
+[node name="Sounds" type="Node3D" parent="."]
+
 [node name="Background" type="Node3D" parent="."]
 
 [node name="Floor" type="MeshInstance3D" parent="Background"]
