@@ -29,7 +29,7 @@ extends Node3D
 ## How fast player moves up/down
 @export var VERTICAL_SPEED: float = 10.0
 ## How many units player moves their hands when moving up/down
-@export var Z_HAND_DELTA: float = -3.0
+@export var Z_HAND_TEMP_POS: float = -0.2
 ## How fast player moves their hands when moving up/down.
 @export var Z_HAND_SPEED: float = 10.0
 
@@ -38,7 +38,7 @@ var is_currently_up: bool = true
 
 var horizontal_move_locked: bool = false
 var vertical_move_locked: bool = false
-var is_moving_horizontally: bool = false
+
 
 func _ready():
 	self.position = PosDict[current_pos].position
@@ -53,16 +53,15 @@ func move_to(number: int):
 	var halfway = self.position.x + (PosDict[number].position.x - self.position.x) / 2
 	
 	var left_hand_pos = left_hand.position.z
-	var left_hand_temp_pos = position.z + Z_HAND_DELTA
+	var left_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var right_hand_pos = right_hand.position.z
-	var right_hand_temp_pos = position.z + Z_HAND_DELTA
+	var right_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var first_tween = create_tween()
 	
 	horizontal_move_locked = true
 	vertical_move_locked = true
-	is_moving_horizontally = true
 	
 	first_tween.tween_property(self, "position:x", halfway, 1 / HORIZONTAL_SPEED)
 	if not is_currently_up:
@@ -86,7 +85,6 @@ func move_to(number: int):
 		await second_right_hand_tween.finished
 	else:
 		await second_tween.finished
-	is_moving_horizontally = false
 	
 	horizontal_timer.start()
 	await horizontal_timer.timeout
@@ -110,10 +108,10 @@ func switch_vertical():
 	var first_right_hand_tween = create_tween()
 	
 	var left_hand_pos = left_hand.position.z
-	var left_hand_temp_pos = position.z + Z_HAND_DELTA
+	var left_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	var right_hand_pos = right_hand.position.z
-	var right_hand_temp_pos = position.z + Z_HAND_DELTA
+	var right_hand_temp_pos = Z_HAND_TEMP_POS
 	
 	horizontal_move_locked = true
 	vertical_move_locked = true
@@ -151,7 +149,7 @@ func _unhandled_input(event):
 	for n in [1, 2, 3, 4]:
 		if event.is_action_pressed(str(n)) and not horizontal_move_locked:
 			move_to(n)
-	if event.is_action_pressed("Shift") and not vertical_move_locked:
+	if event.is_action_pressed("Shift"):
 		switch_vertical()
 #	if event.is_action_pressed("Esc"):
 #		get_tree().quit()
