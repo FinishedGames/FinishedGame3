@@ -1,10 +1,14 @@
 extends Node3D
 
 
-@onready var horizontal_timer = $HorizontalTimer
-@onready var vertical_timer = $VerticalTimer
-@onready var left_hand = $LeftHand
-@onready var right_hand = $RightHand
+@onready var horizontal_timer: Timer = $HorizontalTimer
+@onready var vertical_timer: Timer = $VerticalTimer
+@onready var left_hand: Node3D = $LeftHand
+@onready var right_hand: Node3D = $RightHand
+
+@onready var woosh: AudioStreamPlayer3D = $Woosh
+@onready var grunt: AudioStreamPlayer3D = $Grunt
+
 
 @export var current_pos: int = 2
 
@@ -48,6 +52,8 @@ func move_to(number: int):
 	
 	if number == current_pos:
 		return
+	
+	woosh.play()
 	
 	var new_position = PosDict[number].position.x
 	var halfway = self.position.x + (PosDict[number].position.x - self.position.x) / 2
@@ -95,6 +101,8 @@ func move_to(number: int):
 
 
 func switch_vertical():
+	grunt.play()
+	
 	var new_position: float
 	var halfway: float
 	if is_currently_up:
@@ -149,7 +157,7 @@ func _unhandled_input(event):
 	for n in [1, 2, 3, 4]:
 		if event.is_action_pressed(str(n)) and not horizontal_move_locked:
 			move_to(n)
-	if event.is_action_pressed("Shift"):
+	if event.is_action_pressed("Shift") and not vertical_move_locked:
 		switch_vertical()
 #	if event.is_action_pressed("Esc"):
 #		get_tree().quit()

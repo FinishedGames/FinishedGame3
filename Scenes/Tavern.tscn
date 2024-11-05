@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://bwdxeknq3ln8"]
+[gd_scene load_steps=39 format=3 uid="uid://bwdxeknq3ln8"]
 
+[ext_resource type="AudioStream" uid="uid://bgdif8kkoc5ox" path="res://Resources/Sounds/crickets.wav" id="1_pxau7"]
 [ext_resource type="Material" uid="uid://btdnpqadnchbl" path="res://Resources/Materials/wood_mat.tres" id="1_vlobw"]
 [ext_resource type="Material" uid="uid://ck73ghsdefen2" path="res://Resources/Materials/stone_mat.tres" id="2_snqm7"]
 [ext_resource type="Material" uid="uid://cuteg3ajfpcrl" path="res://Resources/Materials/table_mat.tres" id="3_pumyl"]
@@ -126,6 +127,12 @@ point_count = 2
 [node name="Tavern" type="Node3D"]
 
 [node name="Sounds" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93102, 1.2541, -5.86824)
+stream = ExtResource("1_pxau7")
+autoplay = true
+panning_strength = 1.63
 
 [node name="Background" type="Node3D" parent="."]
 
@@ -608,8 +615,5 @@ curve = SubResource("Curve3D_6esnt")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="ClientSpawner/client_forth/Path3D4"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.25, 0, -4.99)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.999379, 0, -0.0352483, 0, 1, 0, 0.0352483, 0, -0.999379, 0, 1.96432, -2.70772)
 
 [editable path="Player"]

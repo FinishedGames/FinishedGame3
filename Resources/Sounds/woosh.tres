@@ -1,0 +1,15 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://hoqetmsjx8fq"]
+
+[ext_resource type="AudioStream" uid="uid://bjooxks5vvyph" path="res://Resources/Sounds/woosh1.wav" id="1_d556s"]
+[ext_resource type="AudioStream" uid="uid://bqbdik0qt5mm0" path="res://Resources/Sounds/woosh2.wav" id="2_w8xap"]
+[ext_resource type="AudioStream" uid="uid://bf8osgmumj3rk" path="res://Resources/Sounds/woosh3.wav" id="3_3uf0q"]
+[ext_resource type="AudioStream" uid="uid://ccrnmsyml8wcr" path="res://Resources/Sounds/woosh4.wav" id="4_engg6"]
+[ext_resource type="AudioStream" uid="uid://uwlkat5yu0gq" path="res://Resources/Sounds/woosh5.wav" id="5_vsu4m"]
+
+[resource]
+streams_count = 5
+stream_0/stream = ExtResource("1_d556s")
+stream_1/stream = ExtResource("2_w8xap")
+stream_2/stream = ExtResource("3_3uf0q")
+stream_3/stream = ExtResource("4_engg6")
+stream_4/stream = ExtResource("5_vsu4m")
