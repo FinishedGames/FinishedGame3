@@ -16,12 +16,12 @@ func generate_client():
 	new_client.path = chosen_path
 	chosen_path.add_child(new_client)
 	#new_client.position += Vector3(0,0.2,0)
-	
+
 	new_client.come_in()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+
 	pass
 
 func choose_path() -> Node3D:
