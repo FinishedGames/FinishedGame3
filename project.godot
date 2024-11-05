@@ -10,6 +10,7 @@ config_version=5
 
 [application]
 
+
 config/name="TavernKeeper"
 run/main_scene="res://Scenes/Tavern.tscn"
 config/features=PackedStringArray("4.3")
