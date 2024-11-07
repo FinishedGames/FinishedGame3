@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/left_hand.gd" id="2_obhq6"]
 [ext_resource type="Texture2D" uid="uid://c1yv5r8cilq5m" path="res://Resources/Sprites/hand.PNG" id="2_y1ent"]
 [ext_resource type="Script" path="res://Scripts/right_hand.gd" id="4_548bs"]
-[ext_resource type="AudioStream" uid="uid://hoqetmsjx8fq" path="res://Resources/Sounds/woosh.tres" id="5_dk7nn"]
-[ext_resource type="AudioStream" uid="uid://bogaxf4t2w8uo" path="res://Resources/Sounds/grunt.tres" id="6_5evmu"]
+[ext_resource type="AudioStream" uid="uid://hoqetmsjx8fq" path="res://Resources/Sounds/Wooshes/woosh.tres" id="5_dk7nn"]
+[ext_resource type="AudioStream" uid="uid://bogaxf4t2w8uo" path="res://Resources/Sounds/Grunts/grunt.tres" id="6_5evmu"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_tguqv")
@@ -52,3 +52,4 @@ stream = ExtResource("5_dk7nn")
 
 [node name="Grunt" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_5evmu")
+pitch_scale = 0.81

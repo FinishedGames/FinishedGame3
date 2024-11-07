@@ -1,8 +1,14 @@
 class_name  Client3D extends Node3D
 
+
+@export var spawner: Node3D
+
+
 @onready var head_sprite = $Head
 @onready var body_sprite = $Body
 @onready var hair_sprite = $Hair
+@onready var fall = $Fall
+@onready var animation_player = $AnimationPlayer
 
 var path : PathFollow3D
 
@@ -23,17 +29,11 @@ func _select_character():
 func _generate_order():
 	pass
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	_select_character()
 	_generate_order()
 	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func come_in() -> void:
 	var start_rotation = rotation
@@ -52,7 +52,6 @@ func come_in() -> void:
 		await tree.process_frame
 	await tree.create_timer(2).timeout
 	leave()
-		
 
 
 func leave() -> void:
@@ -70,13 +69,10 @@ func leave() -> void:
 		await tree.process_frame
 	p = 0.0
 	start_rotation = rotation
-	while (p<1):
-		p+=get_process_delta_time()*speed;
-		if p>1:
-			p = 1.0
-		rotation = start_rotation + Vector3(4*p*p,0,0.2*(1-p)*sin((4-2*p)*PI*p))
-		await tree.process_frame
-		
-		
-	
-	
+	animation_player.play("falling")
+	await get_tree().create_timer(0.4).timeout
+	fall.play()
+	await fall.finished
+	path.progress = 0
+	spawner.paths[path] = true
+	self.queue_free()

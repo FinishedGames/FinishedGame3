@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b8pq5lose72c2"
-path="res://.godot/imported/grunt7.wav-0097e14659d5c6994b8a0b091e74ae44.sample"
+uid="uid://dyhc3f5uorxpe"
+path="res://.godot/imported/grunt1.wav-f896a2af6a5f9cc35d16ead3bacb34a8.sample"
 
 [deps]
 
-source_file="res://Resources/Sounds/grunt7.wav"
-dest_files=["res://.godot/imported/grunt7.wav-0097e14659d5c6994b8a0b091e74ae44.sample"]
+source_file="res://Resources/Sounds/Grunts/grunt1.wav"
+dest_files=["res://.godot/imported/grunt1.wav-f896a2af6a5f9cc35d16ead3bacb34a8.sample"]
 
 [params]
 

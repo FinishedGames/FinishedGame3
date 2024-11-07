@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bwdxeknq3ln8"]
+[gd_scene load_steps=44 format=3 uid="uid://bwdxeknq3ln8"]
 
 [ext_resource type="AudioStream" uid="uid://bgdif8kkoc5ox" path="res://Resources/Sounds/crickets.wav" id="1_pxau7"]
 [ext_resource type="Material" uid="uid://btdnpqadnchbl" path="res://Resources/Materials/wood_mat.tres" id="1_vlobw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/client_spawner.gd" id="9_or1cr"]
 [ext_resource type="Texture2D" uid="uid://vahfhepxtrjp" path="res://Resources/Sprites/door_frame.PNG" id="9_tm7rx"]
 [ext_resource type="Texture2D" uid="uid://bq33y8qn4aco3" path="res://Resources/Sprites/temp_door.png" id="10_8oiw0"]
+[ext_resource type="AudioStream" uid="uid://det1c2oxe68hg" path="res://Resources/Sounds/door_creak.wav" id="11_ab6c7"]
 [ext_resource type="Texture2D" uid="uid://dyi0fnvm61wor" path="res://Resources/Sprites/outside.PNG" id="12_r5asi"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7l8aw"]
@@ -95,6 +96,36 @@ radial_segments = 12
 top_radius = 0.005
 bottom_radius = 0.005
 height = 0.35
+
+[sub_resource type="Animation" id="Animation_nsw7y"]
+resource_name = "Open"
+length = 4.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.803903, 0, 0.59476, 2.4, 1, 0, 0.772229, 0, 0.635345, 4, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_we2wp"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jed6u"]
+_data = {
+"Open": SubResource("Animation_nsw7y"),
+"RESET": SubResource("Animation_we2wp")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_yltkg"]
+size = Vector3(1.2, 1.8, 0.01)
 
 [sub_resource type="Curve3D" id="Curve3D_5ellv"]
 _data = {
@@ -553,12 +584,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 1.676, 3.665)
 [node name="Four" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 1.676, 3.665)
 
-[node name="ClientSpawner" type="Node3D" parent="." node_paths=PackedStringArray("paths")]
+[node name="ClientSpawner" type="Node3D" parent="."]
 script = ExtResource("9_or1cr")
-paths = [NodePath("client_first/Path3D/PathFollow3D"), NodePath("client_second/Path3D2/PathFollow3D"), NodePath("client_third/Path3D3/PathFollow3D"), NodePath("client_forth/Path3D4/PathFollow3D")]
 
 [node name="Door" type="Node3D" parent="ClientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -4.99)
+
+[node name="Creak" type="AudioStreamPlayer3D" parent="ClientSpawner/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, 4.99)
+stream = ExtResource("11_ab6c7")
 
 [node name="Sprite3D" type="Sprite3D" parent="ClientSpawner/Door"]
 transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 1.075, 0)
@@ -575,6 +609,19 @@ texture = ExtResource("10_8oiw0")
 transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0.008, 1.075, 0)
 sorting_offset = 0.1
 texture = ExtResource("12_r5asi")
+
+[node name="DoorOpen" type="Node3D" parent="ClientSpawner/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.570258, 1.01547, 0.0588703)
+
+[node name="OpenAnimation" type="AnimationPlayer" parent="ClientSpawner/Door/DoorOpen"]
+libraries = {
+"": SubResource("AnimationLibrary_jed6u")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClientSpawner/Door/DoorOpen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.549574, -0.0899721, 0.0336199)
+material_override = ExtResource("3_pumyl")
+mesh = SubResource("BoxMesh_yltkg")
 
 [node name="client_first" type="Marker3D" parent="ClientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, 1.5)
